@@ -8,19 +8,93 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1536704231234-beca9772ca68?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
+
+        .hero-container {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            animation: zoomIn 8s ease-out forwards;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(1.1);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .verse-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .verse-text::before, .verse-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+        }
+        
+        .verse-text::before {
+            top: -15px;
+            left: -20px;
+        }
+        
+        .verse-text::after {
+            bottom: -25px;
+            right: -20px;
+        }
+     
         .nav-link:hover {
-            color: #f59e0b;
+            color: #2563EB;
         }
         
         .nav-link.active {
-            color: #f59e0b;
-            border-bottom: 2px solid #f59e0b;
+            color: #2563EB;
+            border-bottom: 2px solid #2563EB;
         }
         
         .ministry-card:hover {
@@ -72,30 +146,51 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white py-20 md:py-32">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-6xl font-bold mb-6">Welcome to Chalata Mission District</h2>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Growing in faith. Serving with love. Sharing the hope of Christ.</p>
-            
-            <div class="m-2 text-sm">
-                <i>"We remember before our God and Father your work produced by faith, 
-                    <br>your labor prompted by love, and your endurance inspired <br>
-                    by hope in our Lord Jesus Christ." - 1 Thess 1:3 NIV
-                </i>
-            </div>
-           
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
-            
-                <a href="#about" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition-colors">
-                    Learn More About Us
-                </a>
-                 <a href="https://forms.gle/HU1698kuRMDtrjzG9" rel="noopener" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
-                   Fill Quarterly Reports
-                </a>
+       <!-- Hero Section with Image Tag -->
+    <section id="home" class="hero-container">
+        <!-- Background Image -->
+        <img src="images/hero-image.jpg" 
+             alt="Church gathering" 
+             class="hero-image">
+        
+        <!-- Overlay for better text readability -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Content -->
+        <div class="hero-content container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <i class="fas fa-cross text-yellow-300 text-3xl mb-4 animate-bounce"></i>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+                    <span class="inline-block">Welcome to</span> <br>
+                    <span class="inline-block text-blue-600  bg-clip-text text-transparent">Chalata Mission District</span>
+
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-200 font-light">
+                    Growing in faith. Serving with love. Sharing the hope of Christ.
+                </p>
+                
+                <div class="verse-text text-white text-sm md:text-base italic mt-12 px-4 py-2 rounded-lg inline-block">
+                    "We remember before our God and Father your work produced by faith, <br>
+                    your labor prompted by love, and your endurance inspired <br>
+                    by hope in our Lord Jesus Christ."<br>
+                    <span class="not-italic font-semibold text-yellow-300">- 1 Thessalonians 1:3 NIV</span>
+                </div>
+                
+                <div class="mt-12 flex flex-wrap justify-center gap-6">
+  <a href="#about" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition-colors">
+    Learn More About Us
+  </a>
+  <a href="https://forms.gle/HU1698kuRMDtrjzG9" rel="noopener" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+    Fill Quarterly Reports
+  </a>
+</div>
+
+
             </div>
         </div>
     </section>
+
+    
 
     <!-- About Us Section -->
     <section id="about" class="py-16 bg-white">
@@ -569,6 +664,15 @@
         });
         document.querySelector('a[href="#"]').addEventListener('mouseout', function() {
             this.classList.remove('underline');
+        });
+
+        // Simple animation trigger
+        document.addEventListener('DOMContentLoaded', function() {
+            const verse = document.querySelector('.verse-text');
+            setTimeout(() => {
+                verse.style.opacity = '1';
+                verse.style.transform = 'translateY(0)';
+            }, 500);
         });
     </script>
 </body>
