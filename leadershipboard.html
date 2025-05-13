@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Management Team</title>
+  <link href="src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <style>
+        .team-card:hover .social-icons {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .team-card:hover img {
+            transform: scale(1.05);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        .position-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(37, 99, 235, 0.9);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+     <nav class="bg-white shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Home link with animation -->
+                <a href="index.html" class="home-link flex items-center space-x-2">
+                    <i class="fas fa-home text-blue-500 text-xl"></i>
+                    <span class="text-gray-800 font-medium">Return Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header Section -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">The District Adcom Team</h1>
+            <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Meet the 2025 - 2026 experienced leaders who guide our districts' vision, strategy, and operations. Our adcom team brings together diverse expertise to drive innovation and growth of the district.
+            </p>
+        </div>
+
+        <!-- Team Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Team Member 1 - CEO -->
+            <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="relative overflow-hidden h-80">
+                    <img src="images/admininstration/vicechair.png" 
+                         alt="vice Chair" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                    <div class="position-tag">Vice Chair</div>
+                    <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Elder Chibuye Clement</h3>
+                    <p class="text-blue-600 font-medium mb-3">District Vice Chair</p>
+                   
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 972933829</span>
+                    </div>
+                  
+                </div>
+            </div>
+
+            <!-- Team Member 2 - CTO -->
+            <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="relative overflow-hidden h-80">
+                    <img src="images/admininstration/vicechair2.png" 
+                         alt="Vice Chair" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                    <div class="position-tag">Vice Chair</div>
+                    <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                        <a class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-github text-xl"></i></a>
+                        <a class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Elder Hadungu Sydney</h3>
+                    <p class="text-blue-600 font-medium mb-3">Vice Chair</p>
+                    
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 957317568</span>
+                    </div>
+                
+                </div>
+            </div>
+
+            <!-- Team Member 3 - CFO -->
+            <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="relative overflow-hidden h-80">
+                    <img src="images/admininstration/secretary.png" 
+                         alt="CFO" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                    <div class="position-tag">Secretary</div>
+                    <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                        <a class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Elder Ntuluba Innocent</h3>
+                    <p class="text-blue-600 font-medium mb-3">District Secretary</p>
+                   
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 0971531697</span>
+                    </div>
+                
+                </div>
+            </div>
+
+            <!-- Team Member 4 - CMO -->
+            <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="relative overflow-hidden h-80">
+                    <img src="images/admininstration/secretary2.png" 
+                         alt="CMO" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                    <div class="position-tag">Secretary</div>
+                    <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Emily Wilson</h3>
+                    <p class="text-blue-600 font-medium mb-3">District Secretary</p>
+                    
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 953272937</span>
+                    </div>
+                 
+                </div>
+            </div>
+
+            <!-- Team Member 5 - COO -->
+            <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="relative overflow-hidden h-80">
+                    <img src="images/admininstration/treasury.png"
+                         alt="Treasurer" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                    <div class="position-tag">Treasurer</div>
+                    <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Sis Katandala</h3>
+                    <p class="text-blue-600 font-medium mb-3">District Treasurer</p>
+                   
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 972309945</span>
+                    </div>
+           
+                </div>
+            </div>
+
+            <!-- Team Member 6 - CHRO -->
+            <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="relative overflow-hidden h-80">
+                    <img src="images/admininstration/treasurer2.png" 
+                         alt="CHRO" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                    <div class="position-tag">Treasurer</div>
+                    <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                        <a " class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a  class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Elder Mbulo</h3>
+                    <p class="text-blue-600 font-medium mb-3">District Treasurer</p>
+                 
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 956751253</span>
+                    </div>
+              
+                </div>
+            </div>
+
+            <!-- Team Member 7 - CRO -->
+            <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="relative overflow-hidden h-80">
+                    <img src="images/admininstration/vice_treasurer.png" 
+                         alt="CRO" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                    <div class="position-tag">VICE</div>
+                    <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                        <a class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Mrs Mbulo</h3>
+                    <p class="text-blue-600 font-medium mb-3">Asst. Treasurer</p>
+                   
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 953979802</span>
+                    </div>
+           
+                </div>
+            </div>
+
+
+    <!-- Team Member 8- CRO -->
+    <div class="team-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+        <div class="relative overflow-hidden h-80">
+            <img src="images/admininstration/vice_secretary.png" 
+                 alt="CRO" 
+                 class="w-full h-full object-cover transition-transform duration-500">
+            <div class="position-tag">VICE</div>
+            <div class="social-icons absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transform translate-y-10 transition-all duration-300 flex justify-center space-x-4">
+                <a  class="text-white hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a  class="text-white hover:text-blue-400 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+            </div>
+        </div>
+        <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800">Elder Moono</h3>
+            <p class="text-blue-600 font-medium mb-3">Asst. Secretary</p>
+            <div class="flex items-center text-gray-600 mb-1">
+                <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                <span>+260 956318904</span>
+            </div>
+        
+        </div>
+    </div>
+
+
+        </div>
+
+        
+
+        <!-- Executive Assistants Section -->
+        <div class="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Support Contacts </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2">POS</h3>
+                    <p class="text-gray-600 mb-2">Elder Musonda</p>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 966537164</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2">POS</h3>
+                    <p class="text-gray-600 mb-2">Elder Simachennya</p>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>+260 966931431</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2">POS</h3>
+                    <p class="text-gray-600 mb-2">Mrs Bukole</p>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                        <span>260 77191198</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    // Simple hover effect enhancement
+        document.querySelector('.home-link').addEventListener('mouseenter', function() {
+            this.querySelector('i').style.color = '#2563eb'; // blue-600
+        });
+        document.querySelector('.home-link').addEventListener('mouseleave', function() {
+            this.querySelector('i').style.color = '#3b82f6'; // blue-500
+        });
+</script>
+
+
+</body>
+</html>

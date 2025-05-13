@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subtle Events Calendar</title>
+   <link href="src/output.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .event-card { transition: all 0.2s ease; }
+    .event-card:hover { transform: translateY(-1px); }
+    .modal { transition: all 0.2s ease; }
+    .fade-in { animation: fadeIn 0.2s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .admin-controls { opacity: 0; transition: opacity 0.2s ease; }
+    .event-card:hover .admin-controls { opacity: 1; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+   <nav class="bg-white shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Home link with animation -->
+                <a href="index.html" class="home-link flex items-center space-x-2">
+                    <i class="fas fa-home text-blue-500 text-xl"></i>
+                    <span class="text-gray-800 font-medium">Return Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <header class="mb-8">
+      <h1 class="text-3xl font-light text-gray-800 mb-1">Events Calendar</h1>
+      <p class="text-gray-500">Upcoming events and activities</p>
+      <div class="mt-6 flex space-x-2">
+        <button id="addEventButton" class="text-sm text-gray-600 hover:text-indigo-600 px-3 py-1 border border-gray-300 rounded-full transition flex items-center">
+          <i class="fas fa-plus mr-1 text-xs"></i> Add Event
+        </button>
+        <button id="removeEventButton" class="text-sm text-gray-600 hover:text-red-600 px-3 py-1 border border-gray-300 rounded-full transition flex items-center">
+          <i class="fas fa-trash mr-1 text-xs"></i> Remove Event This
+        </button>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+    <!-- Add Modal -->
+    <div id="addModal" class="modal fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 invisible">
+      <div class="bg-white rounded-lg p-6 w-full max-w-sm fade-in shadow-sm border border-gray-200">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-lg font-medium text-gray-700">Add Event</h3>
+          <button onclick="window.closeAddModal()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="space-y-3">
+          <input type="password" id="addCode" placeholder="Enter Code" class="w-full px-3 py-2 text-sm border border-gray-300 rounded"/>
+          <input type="text" id="eventName" placeholder="Event Name" class="w-full px-3 py-2 text-sm border border-gray-300 rounded"/>
+          <input type="date" id="eventDate" class="w-full px-3 py-2 text-sm border border-gray-300 rounded"/>
+          <textarea id="eventDescription" placeholder="Brief description..." class="w-full px-3 py-2 text-sm border border-gray-300 rounded" rows="2"></textarea>
+          <button onclick="window.addEvent()" class="w-full mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded text-sm transition">Add Event</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remove Modal -->
+    <div id="removeModal" class="modal fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 invisible">
+      <div class="bg-white rounded-lg p-6 w-full max-w-sm fade-in shadow-sm border border-gray-200">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-lg font-medium text-gray-700">Remove Event</h3>
+          <button onclick="window.closeRemoveModal()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="space-y-3">
+          <input type="password" id="removeCode" placeholder="Enter Code" class="w-full px-3 py-2 text-sm border border-gray-300 rounded"/>
+          <select id="eventToRemove" class="w-full px-3 py-2 text-sm border border-gray-300 rounded">
+            <option value="">Select an event...</option>
+          </select>
+          <button onclick="window.removeEvent()" class="w-full mt-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded text-sm transition">Remove Event</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="notification" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded text-sm shadow-sm hidden">
+      <span id="notificationMessage"></span>
+    </div>
+  </div>
+
+  <!-- Attach event triggers dynamically -->
+  <script type="module">
+    import './firebase-config.js';
+    import * as events from './eventsposts.js';
+
+    // Attach modal openers
+    document.getElementById('addEventButton').addEventListener('click', events.openAddModal);
+    document.getElementById('removeEventButton').addEventListener('click', events.openRemoveModal);
+
+       // Simple hover effect enhancement
+        document.querySelector('.home-link').addEventListener('mouseenter', function() {
+            this.querySelector('i').style.color = '#2563eb'; // blue-600
+        });
+        document.querySelector('.home-link').addEventListener('mouseleave', function() {
+            this.querySelector('i').style.color = '#3b82f6'; // blue-500
+        });
+
+        
+
+    // Attach to window so HTML onclick still works
+    window.addEvent = events.addEvent;
+    window.removeEvent = events.removeEvent;
+    window.openAddModal = events.openAddModal;
+    window.closeAddModal = events.closeAddModal;
+    window.openRemoveModal = events.openRemoveModal;
+    window.closeRemoveModal = events.closeRemoveModal;
+  </script>
+</body>
+</html>

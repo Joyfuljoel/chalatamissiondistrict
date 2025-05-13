@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalata Mission District</title>
+    <link href="src/output.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .nav-link:hover {
+            color: #f59e0b;
+        }
+        
+        .nav-link.active {
+            color: #f59e0b;
+            border-bottom: 2px solid #f59e0b;
+        }
+        
+        .ministry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header with Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div><img src="images/adventist-symbol--bluejay.png" alt="SDA Logo"  class="w-10 h-10 object-cover"></div>
+                <h1 class="text-2xl font-bold text-gray-800">Chalata Mission District</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link active text-gray-800 font-medium">Home</a>
+                <a href="#about" class="nav-link text-gray-800 font-medium">About Us</a>
+                <a href="announcements.html" class="nav-link text-gray-800 font-medium">Announcements</a>
+                <a href="#ministries" class="nav-link text-gray-800 font-medium">Ministries</a>
+                <a href="#resources" class="nav-link text-gray-800 font-medium">Resources</a>
+                <a href="#events" class="nav-link text-gray-800 font-medium">Events</a>
+                <a href="#contact" class="nav-link text-gray-800 font-medium">Contact/Give</a>
+            </nav>
+            
+            <button class="md:hidden text-gray-800">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden bg-white shadow-lg hidden" id="mobileMenu">
+        <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+            <a href="#home" class="nav-link active text-gray-800 font-medium py-2">Home</a>
+            <a href="#about" class="nav-link text-gray-800 font-medium py-2">About Us</a>
+            <a href="#ministries" class="nav-link text-gray-800 font-medium py-2">Ministries</a>
+            <a href="#resources" class="nav-link text-gray-800 font-medium py-2">Resources</a>
+            <a href="#events" class="nav-link text-gray-800 font-medium py-2">Events</a>
+            <a href="#contact" class="nav-link text-gray-800 font-medium py-2">Contact/Give</a>
+           
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6">Welcome to Chalata Mission District</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Growing in faith. Serving with love. Sharing the hope of Christ.</p>
+            
+            <div class="m-2 text-sm">
+                <i>"We remember before our God and Father your work produced by faith, 
+                    <br>your labor prompted by love, and your endurance inspired <br>
+                    by hope in our Lord Jesus Christ." - 1 Thess 1:3 NIV
+                </i>
+            </div>
+           
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+            
+                <a href="#about" class="bg-transparent hover:bg-white hover:text-gray-900 border-2 border-white text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                    Learn More About Us
+                </a>
+                 <a href="https://forms.gle/HU1698kuRMDtrjzG9" rel="noopener" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                   Fill Quarterly Reports
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">About Our District</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="images/district-pastor.jpg" alt="District Pastor" class="rounded-lg shadow-lg w-full">
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">The District Pastor</h3>
+                    <p class="text-gray-600 mb-4">
+                        Pastor Joel Zemba, born in 1997, holds a master's degree in Computer Science and IT and a bachelor's degree in Theology. 
+                        He is the author of <span class="italic">When God Gets Personal </span>and a passionate home chef who blends faith, tech, and flavor in everyday life.
+
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Chalata Mission District, organised in 2021, we have been serving our community with the love of Christ for over 4 years. 
+                        We believe in the power of the Gospel to transform lives and communities.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#ministries" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                            Our Ministries
+                        </a>
+                        <a href="leadershipboard.html" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-lg font-medium transition-colors">
+                            Meet Our Team
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries Section -->
+    <section id="ministries" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Ministries</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+                    We offer various ministries for all ages and stages of life to help you grow in your faith and connect with others.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Ministry Card 1 -->
+                <div class="ministry-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/children.jpg" alt="Children's Ministry" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Children's Ministry</h3>
+                        <p class="text-gray-600 mb-4">
+                            Engaging programs for kids ages 0-12 to learn about Jesus in a fun, safe environment.
+                        </p>
+                        <a href="https://sidadventist.org/childrens-ministries" rel="noopener" target="_blank" class="text-blue-600 font-medium hover:text-blue-800">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- Ministry Card 2 -->
+                <div class="ministry-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/youthministries.jpg" alt="Youth Group" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Adventist Youth ministry</h3>
+                        <p class="text-gray-600 mb-4">
+                            A dynamic community for teens to grow in faith and build meaningful relationships.
+                        </p>
+                        <a href="https://sidadventist.org/adventist-youth-ministries" rel="noopener" target="_blank" class="text-blue-600 font-medium hover:text-blue-800">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- Ministry Card 3 -->
+                <div class="ministry-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/dorcas.jpg" alt="Dorcas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Women Ministries & Dorcas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Connect with the communities through the Dorcas Mothers serving the needy via charity acts and many more activities.
+                        </p>
+                        <a href="https://women.adventist.org/assets/public/files/miscfiles/Dorcas%20and%20WM/Dorcas%20and%20WM.htm" rel="noopener" target="_blank" class="text-blue-600 font-medium hover:text-blue-800">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="https://gc.adventist.org/about-us/departments-services/" rel="noopener" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors inline-block">
+                    View All Ministries
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Resources</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+                    Tools and materials to help you grow in your spiritual journey.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Resource 1 -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Downloads</h3>
+                    <p class="text-gray-600 mb-4">
+                        Download report forms and other essential resources.
+                    </p>
+                    <a href="resources.html" class="text-blue-600 font-medium hover:text-blue-800">Access Downloads →</a>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Bible Studies</h3>
+                    <p class="text-gray-600 mb-4">
+                        Download study guides and resources for personal or group study.
+                    </p>
+                    <a href="https://www.adultbiblestudyguide.org" rel="noopener" target="_blank" class="text-blue-600 font-medium hover:text-blue-800">View Studies →</a>
+                </div>
+                
+                <!-- Resource 3 -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-praying-hands"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Prayer Requests</h3>
+                    <p class="text-gray-600 mb-4">
+                        Share your prayer needs or pray for others in our community.
+                    </p>
+                    <a href="prayerwall.html" class="text-blue-600 font-medium hover:text-blue-800">Prayer Wall →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Upcoming Events</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+                    Join us for worship, fellowship, and service opportunities.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Event 1 -->
+                <div class="event-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-blue-600 text-white p-6 flex flex-col items-center justify-center">
+                            <div class="text-4xl font-bold">3-9</div>
+                            <div class="text-xl font-medium">AUG</div>
+                            <div class="text-sm">2025</div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Camp Meeting</h3>
+                            <p class="text-gray-600 mb-4">
+                                Join us at CHALATA CAMP SITE for a week of spiritual revival and reformation.
+                            </p>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Details →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="event-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-blue-600 text-white p-6 flex flex-col items-center justify-center">
+                            <div class="text-4xl font-bold">17-23</div>
+                            <div class="text-xl font-medium">AUG</div>
+                            <div class="text-sm">2025</div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Camp Meeting</h3>
+                            <p class="text-gray-600 mb-4">
+                               Join us at NSHINSO CAMP SITE for a week of spiritual revival and reformation.
+                            </p>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Details →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="event-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-blue-600 text-white p-6 flex flex-col items-center justify-center">
+                            <div class="text-4xl font-bold">TBA</div>
+                            <div class="text-xl font-medium">JUN</div>
+                            <div class="text-sm">9:00 PM 2025</div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Baptism</h3>
+                            <p class="text-gray-600 mb-4">
+                                Quarterly baptisms 
+                            </p>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Details →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 4 -->
+                <div class="event-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-blue-600 text-white p-6 flex flex-col items-center justify-center">
+                            <div class="text-4xl font-bold">TBA</div>
+                            <div class="text-xl font-medium">OCT</div>
+                            <div class="text-sm">2025</div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">local Church Elections</h3>
+                            <p class="text-gray-600 mb-4">
+                               Local church elections of leaders for 2026 - 2027. 
+                            </p>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800">Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="events.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors inline-block">
+                    View All Events
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Give Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Contact Us & Giving</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
+                    We'd love to hear from you and welcome your support of our ministry.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Get In Touch</h3>
+                    
+               <a href="https://forms.gle/939oPBdFckrdZUgp7"   class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                            Send Message
+               </a>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-50 rounded-lg p-8 h-full">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Ways to Give</h3>
+                        
+                        <div class="space-y-6">
+                        <!--    <div>
+                                <h4 class="text-lg font-medium text-gray-800 mb-2">Online Giving</h4>
+                                <p class="text-gray-600 mb-3">
+                                    Give securely online through our donation portal.
+                                </p>
+                                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors inline-block">
+                                    Give Online
+                                </a>
+                            </div>
+                             --> 
+                            
+                            <div>
+                                <h4 class="text-lg font-medium text-gray-800 mb-2">Mobile Money Giving</h4>
+                                <p class="text-gray-600">
+                                    Use the following numbers to donate via Mobile Money;<br>
+                                     <br>Airtel: 0972309945 Anita Katandala<br>
+                                     MTN: 0968359203 Joel Zemba
+
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-medium text-gray-800 mb-2">Location</h4>
+                                <p class="text-gray-600">
+                                    Chalata Mission District<br>
+                                    Chalata Mkushi<br>
+                                    Central Province
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <h4 class="text-lg font-medium text-gray-800 mb-3">District Information</h4>
+                            <div class="space-y-2">
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-3 text-blue-600"></i>
+                                    Chalata Mkushi, Central Province
+                                </p>
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-phone mr-3 text-blue-600"></i>
+                                    (09 68)-359-203
+                                </p>
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-envelope mr-3 text-blue-600"></i>
+                                    Joyfuljoelzemba@gmail.com
+                                </p>
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-cross mr-3 text-blue-600"></i>
+                                    Copperbelt Zambia Conference of the SDA Church
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Chalata Mission District</h3>
+                    <p class="text-gray-400">
+                        Growing in faith. Serving with love. Sharing the hope of Christ.
+                    </p>
+                    <div class="flex space-x-4 mt-4">
+                        <a  class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a  class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a  class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#ministries" class="text-gray-400 hover:text-white">Ministries</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white">Events</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#resources" class="text-gray-400 hover:text-white">Dowloads</a></li>
+                        <li><a href="#resources" class="text-gray-400 hover:text-white">Bible Studies</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Prayer Requests</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">Team</a></li>
+                       
+                    </ul>
+                </div>
+                <!--
+                    <div>
+                    <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
+                    <p class="text-gray-400 mb-4">
+                        Subscribe to our newsletter for updates and inspiration.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+                -->
+            
+            </div>
+            
+            <div class="border-t border-gray-700 pt-1 text-center text-gray-400">
+                <p>&copy; 2025 Chalata Mission District All rights reserved.</p>
+            </div>
+        </div>
+
+                <div class=" pt-1">
+            <div class="flex flex-col items-center justify-center text-center">
+                <div class="flex items-center text-gray-600">
+                    <span class="mr-2">Made with</span>
+                    <span class="heart-beat text-red-500"><i class="fas fa-heart"></i></span>
+                    <span class="mx-2">by</span>
+                    <a href="#" class="font-medium text-purple-600 hover:text-purple-800 transition-colors">
+                        Joel Zemba
+                    </a>
+                </div>
+                <div class="mt-2 flex space-x-4">
+                    <a  class="text-gray-500 hover:text-gray-700 transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a  class="text-gray-500 hover:text-blue-600 transition-colors">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a  class="text-gray-500 hover:text-pink-600 transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('header button').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                document.getElementById('mobileMenu').classList.add('hidden');
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Scroll to section
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Highlight current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    currentSection = '#' + section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+         // Simple hover effect for the name
+        document.querySelector('a[href="#"]').addEventListener('mouseover', function() {
+            this.classList.add('underline');
+        });
+        document.querySelector('a[href="#"]').addEventListener('mouseout', function() {
+            this.classList.remove('underline');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements Board</title>
+    <link href="src/output.css" rel="stylesheet">
+
+        <script type="module" src="firebase-config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .announcement-card {
+            transition: all 0.3s ease;
+        }
+        .announcement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal-enter {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .high-importance {
+            border-left: 4px solid #ef4444;
+        }
+        .low-importance {
+            border-left: 4px solid #10b981;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+     <nav class="bg-white shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Home link with animation -->
+                <a href="index.html" class="home-link flex items-center space-x-2">
+                    <i class="fas fa-home text-blue-500 text-xl"></i>
+                    <span class="text-gray-800 font-medium">Return Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-indigo-700 mb-2">Community Announcements</h1>
+            <p class="text-gray-600">Stay updated with the latest news and events</p>
+            <button id="adminBtn" class="mt-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+                <i class="fas fa-lock mr-2"></i>Admin Access
+            </button>
+        </header>
+
+        <!-- Admin Modal -->
+        <div id="adminModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md modal">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Admin Access</h3>
+                    <button id="closeAdminModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Enter Admin Code:</label>
+                    <input type="password" id="adminCode" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="****">
+                </div>
+                <button id="submitAdminCode" class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
+                    Submit
+                </button>
+            </div>
+        </div>
+
+        <!-- Add Announcement Modal -->
+        <div id="addModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md modal">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Add New Announcement</h3>
+                    <button id="closeAddModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Title:</label>
+                    <input type="text" id="announcementTitle" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter title">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Content:</label>
+                    <textarea id="announcementContent" rows="4" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter announcement content"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Importance:</label>
+                    <select id="announcementImportance" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="high">High Importance</option>
+                        <option value="low">Low Importance</option>
+                    </select>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="saveAnnouncement" class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">
+                        Save
+                    </button>
+                    <button id="cancelAdd" class="flex-1 bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Announcement Modal -->
+        <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md modal">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Edit Announcement</h3>
+                    <button id="closeEditModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <input type="hidden" id="editAnnouncementId">
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Title:</label>
+                    <input type="text" id="editAnnouncementTitle" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter title">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Content:</label>
+                    <textarea id="editAnnouncementContent" rows="4" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter announcement content"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Importance:</label>
+                    <select id="editAnnouncementImportance" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="high">High Importance</option>
+                        <option value="low">Low Importance</option>
+                    </select>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="updateAnnouncement" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+                        Update
+                    </button>
+                    <button id="deleteAnnouncement" class="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
+                        Delete
+                    </button>
+                    <button id="cancelEdit" class="flex-1 bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Announcement Button (visible to admin) -->
+        <div id="adminControls" class="mb-6 hidden">
+            <button id="addAnnouncementBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center">
+                <i class="fas fa-plus mr-2"></i> Add Announcement
+            </button>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="mb-6 flex flex-wrap gap-2">
+            <button id="filterAll" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                All Announcements
+            </button>
+            <button id="filterHigh" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                High Importance
+            </button>
+            <button id="filterLow" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                Low Importance
+            </button>
+        </div>
+
+        <!-- Announcements List -->
+        <div id="announcementsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Announcements will be loaded here -->
+            <div class="text-center py-8 text-gray-500" id="loadingMessage">
+                <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
+                <p>Loading announcements...</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js';
+        import { getDatabase, ref, push, update, remove, onValue } from 'https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: 'AIzaSyAGxpk0pdmSm9ID3sw02Y9nNk-8vKKtxyE',
+            authDomain: 'chalata-website.firebaseapp.com',
+            projectId: 'chalata-website',
+            storageBucket: 'chalata-website.appspot.com',
+            messagingSenderId: '725066930896',
+            appId: '1:725066930896:web:7ab55b42954e01bd439cd5',
+            measurementId: 'G-QKV4KBWJDE'
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const announcementsRef = ref(db, 'announcements');
+
+        // DOM elements
+        const adminBtn = document.getElementById('adminBtn');
+        const adminModal = document.getElementById('adminModal');
+        const closeAdminModal = document.getElementById('closeAdminModal');
+        const adminCodeInput = document.getElementById('adminCode');
+        const submitAdminCode = document.getElementById('submitAdminCode');
+        const adminControls = document.getElementById('adminControls');
+        const addAnnouncementBtn = document.getElementById('addAnnouncementBtn');
+        const addModal = document.getElementById('addModal');
+        const closeAddModal = document.getElementById('closeAddModal');
+        const announcementTitle = document.getElementById('announcementTitle');
+        const announcementContent = document.getElementById('announcementContent');
+        const announcementImportance = document.getElementById('announcementImportance');
+        const saveAnnouncement = document.getElementById('saveAnnouncement');
+        const cancelAdd = document.getElementById('cancelAdd');
+        const editModal = document.getElementById('editModal');
+        const closeEditModal = document.getElementById('closeEditModal');
+        const editAnnouncementId = document.getElementById('editAnnouncementId');
+        const editAnnouncementTitle = document.getElementById('editAnnouncementTitle');
+        const editAnnouncementContent = document.getElementById('editAnnouncementContent');
+        const editAnnouncementImportance = document.getElementById('editAnnouncementImportance');
+        const updateAnnouncement = document.getElementById('updateAnnouncement');
+        const deleteAnnouncement = document.getElementById('deleteAnnouncement');
+        const cancelEdit = document.getElementById('cancelEdit');
+        const announcementsContainer = document.getElementById('announcementsContainer');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const filterAll = document.getElementById('filterAll');
+        const filterHigh = document.getElementById('filterHigh');
+        const filterLow = document.getElementById('filterLow');
+
+        // Admin state
+        let isAdmin = false;
+        let allAnnouncements = [];
+        let currentFilter = 'all';
+
+        // Event listeners
+        adminBtn.addEventListener('click', () => {
+            adminModal.classList.remove('hidden');
+        });
+
+        closeAdminModal.addEventListener('click', () => {
+            adminModal.classList.add('hidden');
+            adminCodeInput.value = '';
+        });
+
+        submitAdminCode.addEventListener('click', () => {
+            const code = adminCodeInput.value.trim();
+            if (code === '2026') {
+                isAdmin = true;
+                adminControls.classList.remove('hidden');
+                adminModal.classList.add('hidden');
+                adminCodeInput.value = '';
+                showToast('Admin access granted', 'success');
+            } else {
+                showToast('Invalid admin code', 'error');
+            }
+        });
+
+        addAnnouncementBtn.addEventListener('click', () => {
+            announcementTitle.value = '';
+            announcementContent.value = '';
+            announcementImportance.value = 'high';
+            addModal.classList.remove('hidden');
+        });
+
+        closeAddModal.addEventListener('click', () => {
+            addModal.classList.add('hidden');
+        });
+
+        cancelAdd.addEventListener('click', () => {
+            addModal.classList.add('hidden');
+        });
+
+        saveAnnouncement.addEventListener('click', () => {
+            const title = announcementTitle.value.trim();
+            const content = announcementContent.value.trim();
+            const importance = announcementImportance.value;
+            
+            if (title && content) {
+                const newAnnouncement = {
+                    title: title,
+                    content: content,
+                    importance: importance,
+                    createdAt: new Date().toISOString()
+                };
+                
+                push(announcementsRef, newAnnouncement)
+                    .then(() => {
+                        addModal.classList.add('hidden');
+                        showToast('Announcement added successfully', 'success');
+                    })
+                    .catch((error) => {
+                        showToast('Error adding announcement: ' + error.message, 'error');
+                    });
+            } else {
+                showToast('Please fill in all fields', 'warning');
+            }
+        });
+
+        // Filter event listeners
+        filterAll.addEventListener('click', () => {
+            currentFilter = 'all';
+            renderAnnouncements(allAnnouncements);
+            updateActiveFilterButton();
+        });
+
+        filterHigh.addEventListener('click', () => {
+            currentFilter = 'high';
+            renderAnnouncements(allAnnouncements.filter(a => a.importance === 'high'));
+            updateActiveFilterButton();
+        });
+
+        filterLow.addEventListener('click', () => {
+            currentFilter = 'low';
+            renderAnnouncements(allAnnouncements.filter(a => a.importance === 'low'));
+            updateActiveFilterButton();
+        });
+
+        function updateActiveFilterButton() {
+            filterAll.classList.remove('bg-indigo-600', 'bg-gray-400');
+            filterHigh.classList.remove('bg-red-500', 'bg-gray-400');
+            filterLow.classList.remove('bg-green-500', 'bg-gray-400');
+            
+            filterAll.classList.add(currentFilter === 'all' ? 'bg-indigo-600' : 'bg-gray-400');
+            filterHigh.classList.add(currentFilter === 'high' ? 'bg-red-500' : 'bg-gray-400');
+            filterLow.classList.add(currentFilter === 'low' ? 'bg-green-500' : 'bg-gray-400');
+        }
+
+        // Load announcements
+        onValue(announcementsRef, (snapshot) => {
+            announcementsContainer.innerHTML = '';
+            
+            if (snapshot.exists()) {
+                loadingMessage.classList.add('hidden');
+                
+                allAnnouncements = [];
+                snapshot.forEach((childSnapshot) => {
+                    allAnnouncements.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
+                });
+                
+                // Sort by date (newest first)
+                allAnnouncements.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                
+                // Filter announcements based on current filter
+                let filteredAnnouncements = allAnnouncements;
+                if (currentFilter === 'high') {
+                    filteredAnnouncements = allAnnouncements.filter(a => a.importance === 'high');
+                } else if (currentFilter === 'low') {
+                    filteredAnnouncements = allAnnouncements.filter(a => a.importance === 'low');
+                }
+                
+                // Render the filtered announcements
+                renderAnnouncements(filteredAnnouncements);
+            } else {
+                loadingMessage.innerHTML = '<p class="text-gray-500">No announcements yet. Check back later!</p>';
+            }
+        });
+
+        function renderAnnouncements(announcements) {
+            announcementsContainer.innerHTML = '';
+            
+            if (announcements.length === 0) {
+                announcementsContainer.innerHTML = `
+                    <div class="col-span-full text-center py-8 text-gray-500">
+                        <i class="fas fa-info-circle text-4xl mb-4"></i>
+                        <p>No announcements found for this filter.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            announcements.forEach(announcement => {
+                const announcementCard = document.createElement('div');
+                const importanceClass = announcement.importance === 'high' ? 'high-importance' : 'low-importance';
+                const importanceColor = announcement.importance === 'high' ? 'bg-red-500' : 'bg-green-500';
+                const importanceText = announcement.importance === 'high' ? 'High Importance' : 'Low Importance';
+                
+                announcementCard.className = `bg-white rounded-lg shadow-md overflow-hidden announcement-card ${importanceClass}`;
+                
+                const date = new Date(announcement.createdAt);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                announcementCard.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-gray-800">${announcement.title}</h3>
+                            ${isAdmin ? `
+                                <div class="flex space-x-2">
+                                    <button class="edit-btn text-indigo-600 hover:text-indigo-800" data-id="${announcement.id}">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-btn text-red-600 hover:text-red-800" data-id="${announcement.id}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <span class="inline-block w-3 h-3 rounded-full ${importanceColor} mr-2"></span>
+                            <span class="text-sm font-medium">${importanceText}</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">Posted on ${formattedDate}</p>
+                        <p class="text-gray-700">${announcement.content}</p>
+                    </div>
+                `;
+                
+                announcementsContainer.appendChild(announcementCard);
+                
+                // Add edit and delete event listeners if admin
+                if (isAdmin) {
+                    const editBtn = announcementCard.querySelector('.edit-btn');
+                    const deleteBtn = announcementCard.querySelector('.delete-btn');
+                    
+                    editBtn.addEventListener('click', () => {
+                        editAnnouncementId.value = announcement.id;
+                        editAnnouncementTitle.value = announcement.title;
+                        editAnnouncementContent.value = announcement.content;
+                        editAnnouncementImportance.value = announcement.importance;
+                        editModal.classList.remove('hidden');
+                    });
+                    
+                    deleteBtn.addEventListener('click', () => {
+                        if (confirm('Are you sure you want to delete this announcement?')) {
+                            remove(ref(db, `announcements/${announcement.id}`))
+                                .then(() => {
+                                    showToast('Announcement deleted successfully', 'success');
+                                })
+                                .catch((error) => {
+                                    showToast('Error deleting announcement: ' + error.message, 'error');
+                                });
+                        }
+                    });
+                }
+            });
+        }
+
+        // Edit announcement
+        updateAnnouncement.addEventListener('click', () => {
+            const id = editAnnouncementId.value;
+            const title = editAnnouncementTitle.value.trim();
+            const content = editAnnouncementContent.value.trim();
+            const importance = editAnnouncementImportance.value;
+            
+            if (title && content) {
+                const updates = {
+                    title: title,
+                    content: content,
+                    importance: importance
+                };
+                
+                update(ref(db, `announcements/${id}`), updates)
+                    .then(() => {
+                        editModal.classList.add('hidden');
+                        showToast('Announcement updated successfully', 'success');
+                    })
+                    .catch((error) => {
+                        showToast('Error updating announcement: ' + error.message, 'error');
+                    });
+            } else {
+                showToast('Please fill in all fields', 'warning');
+            }
+        });
+
+        // Delete announcement
+        deleteAnnouncement.addEventListener('click', () => {
+            const id = editAnnouncementId.value;
+            
+            if (confirm('Are you sure you want to delete this announcement?')) {
+                remove(ref(db, `announcements/${id}`))
+                    .then(() => {
+                        editModal.classList.add('hidden');
+                        showToast('Announcement deleted successfully', 'success');
+                    })
+                    .catch((error) => {
+                        showToast('Error deleting announcement: ' + error.message, 'error');
+                    });
+            }
+        });
+
+        closeEditModal.addEventListener('click', () => {
+            editModal.classList.add('hidden');
+        });
+
+        cancelEdit.addEventListener('click', () => {
+            editModal.classList.add('hidden');
+        });
+
+        // Show toast notification
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            let bgColor = 'bg-blue-500';
+            
+            if (type === 'success') bgColor = 'bg-green-500';
+            else if (type === 'error') bgColor = 'bg-red-500';
+            else if (type === 'warning') bgColor = 'bg-yellow-500';
+            
+            toast.className = `fixed bottom-4 right-4 ${bgColor} text-white px-4 py-2 rounded-lg shadow-lg flex items-center`;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-exclamation-triangle'} mr-2"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize filter buttons
+        updateActiveFilterButton();
+
+
+            // Simple hover effect enhancement
+        document.querySelector('.home-link').addEventListener('mouseenter', function() {
+            this.querySelector('i').style.color = '#2563eb'; // blue-600
+        });
+        document.querySelector('.home-link').addEventListener('mouseleave', function() {
+            this.querySelector('i').style.color = '#3b82f6'; // blue-500
+        });
+    </script>
+</body>
+</html>
